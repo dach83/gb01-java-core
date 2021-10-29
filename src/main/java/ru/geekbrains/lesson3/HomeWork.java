@@ -90,12 +90,12 @@ public class HomeWork {
 
     // Вывод подсказки
     public static void printHint(String secretStr, String userStr) {
-        String hint = "";
+        char[] hint = new char[15];
         for (int i = 0; i < 15; i++) {
             if (i < secretStr.length() && i < userStr.length() && secretStr.charAt(i) == userStr.charAt(i)) {
-                hint += userStr.charAt(i);
+                hint[i] = userStr.charAt(i);
             } else {
-                hint += '#';
+                hint[i] = '#';
             }
         }
         System.out.println(hint);

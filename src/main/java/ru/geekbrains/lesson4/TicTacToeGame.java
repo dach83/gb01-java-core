@@ -64,7 +64,7 @@ public class TicTacToeGame {
 
     // печать счета
     private static void printScore() {
-        System.out.printf("Счет: человек - %d, компьютор - %d \n", scoreHuman, scoreComputer);
+        System.out.printf("Счет: человек - %d, компьютер - %d \n", scoreHuman, scoreComputer);
     }
 
     // заполняет поле пустыми клетками

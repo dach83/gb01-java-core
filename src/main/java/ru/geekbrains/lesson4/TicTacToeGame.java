@@ -17,7 +17,7 @@ public class TicTacToeGame {
     private static char[][] field;
     private static int fieldWidth = 5;  // ширина поля
     private static int fieldHeight = 5; // высота поля
-    private static int winLength = 4;   // длина выйгрышной линии
+    private static int winLength = 4;   // длина выигрышной линии
 
     // кто чем ходит
     private static char dotHuman = DOT_X;
@@ -83,7 +83,7 @@ public class TicTacToeGame {
 
         int maxWinLength = Math.min(fieldWidth, fieldHeight);
         do {
-            System.out.printf("Длина выйгрышной линии от 3 до %d: ", maxWinLength);
+            System.out.printf("Длина выигрышной линии от 3 до %d: ", maxWinLength);
             winLength = scanner.nextInt();
         } while (winLength < 3 || winLength > maxWinLength);
 
@@ -116,11 +116,8 @@ public class TicTacToeGame {
         return true;
     }
 
-    // проверяет выйгрышную линию из симолов dotKind в указанном направлении (dx, dy) с началом в клетке (xBeg, yBeg)
+    // проверяет выигрышную линию из символов dotKind в указанном направлении (dx, dy) с началом в клетке (xBeg, yBeg)
     private static boolean checkWinLine(char dotKind, int xBeg, int yBeg, int dx, int dy) {
-        //if (dx != 0) dx = dx / Math.abs(dx); // направление должно быть -1, 0 или 1
-        //if (dy != 0) dy = dy / Math.abs(dy);
-
         int xEnd = xBeg + dx * (winLength - 1);
         int yEnd = yBeg + dy * (winLength - 1);
         if (!isValidCell(xEnd, yEnd))
@@ -138,10 +135,10 @@ public class TicTacToeGame {
         return true; // эта линия целиком состоит из dotKind
     }
 
-    // проверяет выйгрышную горизонталь, вертикаль и две диагонали с началом в клетке (xBeg, yBeg)
+    // проверяет выигрышную горизонталь, вертикаль и две диагонали с началом в клетке (xBeg, yBeg)
     private static boolean checkWinStartFromCell(char dotKind, int xBeg, int yBeg) {
         if (field[yBeg][xBeg] != dotKind)
-            return false; // в этой клетке не может начинаться выйгрышная линия для dotKind
+            return false; // в этой клетке не может начинаться выигрышная линия для dotKind
 
         return checkWinLine(dotKind, xBeg, yBeg, 1, 0) || // горизонталь
                 checkWinLine(dotKind, xBeg, yBeg, 0, 1) || // вертикаль

@@ -39,20 +39,20 @@ public class Homework {
         // коробки с фруктами
         Box<Apple> appleBox1 = new Box<>(new Apple(), new Apple(), new Apple());
         Box<Apple> appleBox2 = new Box<>(new Apple(), new Apple(), new Apple());
-        Box<Orange> orangeBox1 = new Box<>(new Orange(), new Orange(), new Orange(), new Orange());
+        Box<Orange> orangeBox = new Box<>(new Orange(), new Orange(), new Orange(), new Orange());
 
         System.out.println("Вес appleBox1: " + appleBox1.getWeight());
         System.out.println("Вес appleBox2: " + appleBox2.getWeight());
-        System.out.println("Вес orangeBox1: " + orangeBox1.getWeight());
+        System.out.println("Вес orangeBox: " + orangeBox.getWeight());
         System.out.println("appleBox1.compare(appleBox2): " + appleBox1.compare(appleBox2));
-        System.out.println("appleBox1.compare(orangeBox1): " + appleBox1.compare(orangeBox1));
+        System.out.println("appleBox1.compare(orangeBox): " + appleBox1.compare(orangeBox));
 
         appleBox1.putFrom(appleBox2); // пересыпаем яблоки в одну коробку
 
         System.out.println("Вес appleBox1: " + appleBox1.getWeight());
         System.out.println("Вес appleBox2: " + appleBox2.getWeight());
         System.out.println("appleBox1.compare(appleBox2): " + appleBox1.compare(appleBox2));
-        System.out.println("appleBox1.compare(orangeBox1): " + appleBox1.compare(orangeBox1));
+        System.out.println("appleBox1.compare(orangeBox): " + appleBox1.compare(orangeBox));
     }
 
     // Метод, который меняет два элемента массива местами

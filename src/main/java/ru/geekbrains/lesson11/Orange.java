@@ -1,6 +1,6 @@
 package ru.geekbrains.lesson11;
 
-public class Orange implements Fruit {
+public class Orange extends Fruit {
 
     @Override
     public float getWeight() {

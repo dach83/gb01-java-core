@@ -1,7 +1,7 @@
 package ru.geekbrains.lesson11;
 
-interface Fruit {
+abstract class Fruit {
 
-    float getWeight();
+    abstract public float getWeight();
 
 }

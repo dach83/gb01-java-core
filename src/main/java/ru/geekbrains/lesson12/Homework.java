@@ -40,16 +40,18 @@ package ru.geekbrains.lesson12;
 //        Для второго метода замеряете время разбивки массива на 2, просчета каждого из двух массивов и склейки.
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Homework {
 
     private static final int size = 10000000;
-    private static final int half = size / 2;
 
     public static void main(String[] args) {
-        float[] arr1 = printFillTime(Homework::fillInOneThread);
-        float[] arr2 = printFillTime(Homework::fillInTwoThread);
+        float[] arr1 = new float[size];
+        float[] arr2 = new float[size];
+        printFillTime(arr1, Homework::fillInOneThread);
+        printFillTime(arr2, Homework::fillInTwoThread);
         System.out.println("Массивы совпадают: " + Arrays.equals(arr1, arr2));
     }
 
@@ -60,36 +62,31 @@ public class Homework {
         }
     }
 
-    private static float[] fillInOneThread() {
-        float[] arr = new float[size];
-        fillArray(arr, 0, size);
-        return arr;
+    private static void fillInOneThread(float[] arr) {
+        fillArray(arr, 0, arr.length);
     }
 
-    private static float[] fillInTwoThread() {
-        float[] arr = new float[size];
+    private static void fillInTwoThread(float[] arr) {
+        int half = arr.length / 2;
 
         // первую половину массива заполняем в новом потоке
         Thread thread = new Thread(() -> fillArray(arr, 0, half));
         thread.start();
 
         // вторую половину заполняем в главном потоке
-        fillArray(arr, half, size);
+        fillArray(arr, half, arr.length);
 
         try {
             thread.join(); // ждем когда выполнится поток
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        return arr;
     }
 
-    private static <T> T printFillTime(Supplier<T> supplier) {
+    private static void printFillTime(float[] arr, Consumer<float[]> fillMethod) {
         long start = System.currentTimeMillis();
-        T res = supplier.get();
+        fillMethod.accept(arr);
         System.out.println("Выполнено за: " + (System.currentTimeMillis() - start));
-        return res;
     }
 
 
